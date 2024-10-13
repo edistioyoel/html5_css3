@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script type="text/javascript">
+function retornarLienzo(x) {
+  var canvas = document.getElementById(x);
+  if (canvas.getContext) {
+    var lienzo = canvas.getContext("2d");   
+    return lienzo;
+  } else
+    return false;
+}
+
+function dibujar() {
+  var lienzo=retornarLienzo("lienzo1");
+  if (lienzo) {
+    lienzo.clearRect(0,0,600,600);
+    lienzo.save();
+    lienzo.fillStyle="rgb(255,0,0)";
+    lienzo.translate(300,300);    
+    lienzo.rotate(avance);    
+    lienzo.fillRect(-100,-100,200,200);
+    lienzo.restore();
+    avance+=0.05;
+    if (avance>Math.PI*2)
+      avance=0;
+  }
+}
+
+var avance=0;
+function inicio() {
+  setInterval(dibujar,50);
+}
+
+</script>
+
+<title>ANIMACION</title>
+</head>
+
+<body onLoad="inicio()">
+<div id="menu1title">ANIMACION</div><br>
+<canvas id="lienzo1" width="600" height="600">
+Su navegador no permite utilizar canvas.</canvas>
+<A HREF="index.html" style="color:#FFFF00">Inicio</A><BR>
+</body>
+</html>
